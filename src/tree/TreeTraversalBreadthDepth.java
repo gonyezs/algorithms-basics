@@ -1,48 +1,46 @@
-package traverse;
+package tree;
 
-import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
+import java.util.LinkedList;
+
 
 public class TreeTraversalBreadthDepth {
 
     public static void main(String args[]) {
 
-        Node tree = buildTree();
+        final Node nodeA = buildTree();
 
-        // Breadth first search
+        //Do breadth first search
 
         System.out.println("***  Breadth First search *** ");
 
         Queue queue = new LinkedList() {{
-            offer(tree);
+            offer(nodeA);
         }};
 
         breadthFirstSearch(queue);
 
-        // Depth first search
+        //Do depth first search
 
         System.out.println("***  Depth First search *** ");
 
         Stack stack = new Stack() {{
-            push(tree);
+            push(nodeA);
         }};
 
         depthFirstSearch(stack);
     }
 
-    /**
-     * Recursively traverse the tree with a stack of nodes (LIFO)
-     *
-     * @param stack
-     */
+    //recursively traverse the tree with
+    //a stack of nodes (LIFO)
     public static void depthFirstSearch(Stack stack) {
 
         if (stack.isEmpty()) return;
 
         Node node = (Node) stack.pop();
 
-        System.out.println("Popping node: " + node);
+        System.out.println("popping node: " + node);
 
         if (node.right != null) stack.push(node.right);
 
@@ -51,18 +49,15 @@ public class TreeTraversalBreadthDepth {
         depthFirstSearch(stack);
     }
 
-    /**
-     * Recursively traverse the tree with a queue of nodes (LIFO)
-     *
-     * @param queue
-     */
+    //Recursively traverse the tree with
+    //a queue of nodes (FIFO)
     public static void breadthFirstSearch(Queue queue) {
 
         if (queue.isEmpty()) return;
 
         Node node = (Node) queue.poll();
 
-        System.out.println("Polling node: " + node);
+        System.out.println("polling node: " + node);
 
         if (node.right != null) queue.offer(node.right);
 
@@ -72,6 +67,8 @@ public class TreeTraversalBreadthDepth {
     }
 
     static Node buildTree() {
+        //nodeA needs to be final to be accessed by
+        //the anonymous inner classes below
 
         final Node nodeA = new Node("A");
 
@@ -86,6 +83,8 @@ public class TreeTraversalBreadthDepth {
         Node nodeF = new Node("F");
 
         Node nodeG = new Node("G");
+
+        //build the tree
 
         nodeD.left = nodeE;
 
@@ -102,13 +101,9 @@ public class TreeTraversalBreadthDepth {
         return nodeA;
     }
 }
-
 class Node {
-
     Node right;
-
     Node left;
-
     String value;
 
     Node(String value) {

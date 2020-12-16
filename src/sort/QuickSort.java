@@ -2,22 +2,17 @@ package sort;
 
 import java.util.Arrays;
 
-/**
- * Select a pivot, normally the middle one
- * From both ends, swap elements and make all elements on the left less than the pivot and all elements on the right greater than the pivot
- * Recursively sort left part and right part
- */
 public class QuickSort {
 
     public static void main(String[] args) {
         int[] x = {9, 2, 4, 7, 3, 7, 10};
-        System.out.println("Unsorted array before sorting : " + Arrays.toString(x));
+        System.out.println(Arrays.toString(x));
 
         int low = 0;
         int high = x.length - 1;
 
         quickSort(x, low, high);
-        System.out.println("Sorted array after sorting : " + Arrays.toString(x));
+        System.out.println(Arrays.toString(x));
     }
 
     public static void quickSort(int[] numbers, int low, int high) {
